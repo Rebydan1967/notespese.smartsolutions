@@ -1344,7 +1344,7 @@ function generaPdfHtml(d) {
   </style>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap');
-    body{font-family:'Source Sans 3',sans-serif;max-width:760px;margin:1.5rem auto;color:#1a1a2e;font-size:13px;line-height:1.5}
+    body{font-family:'Source Sans 3',sans-serif;max-width:760px;margin:1.5rem auto;color:#1a1a2e;font-size:13px;line-height:1.5;columns:1!important;column-count:1!important}
     .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #0f3d5c;padding-bottom:0.75rem;margin-bottom:1rem}
     .company{font-family:'Libre Baskerville',serif;font-size:1.4rem;color:#0f3d5c}
     .company span{color:#2e7db5}
@@ -1722,7 +1722,6 @@ async function confermaInvio() {
     `Buonasera,\n\nvi invio le note spese dell'${d.tipo.toLowerCase()} in data ${fmtDate(d.dataEvento)} sulla nave ${d.nave}.\n\n` +
     `── DATI RICHIEDENTE ──\nNome: ${d.nome} ${d.cognome} | Matricola: ${d.matricola}\nEmail: ${d.email||'—'} | Qualifica: ${d.qualifica} | Nave: ${d.nave||'—'} | Porto/Città: ${d.porto}\n\n` +
     `── TIPO: ${d.tipo}${d.tipoAltro?' – '+d.tipoAltro:''}${d.tipoAutorizzato?' | Autorizzato da: '+d.tipoAutorizzato:''} ──\n\n` +
-    `── TRATTA VIAGGIO ──\nTratta 1: ${tratta1}\nTratta 2: ${tratta2}\n\n` +
     `── SPESE VIAGGIO (Cod. 2201) ──\n${speseRighe}\n\n` +
     `TOTALE SPESE:   ${fmt(d.totali.spese)}\n` +
     `TOTALE GENERALE:${fmt(d.totali.totale)}\n\n` +
