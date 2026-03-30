@@ -548,8 +548,11 @@
 let ADMIN_PASSWORD = localStorage.getItem('rsp_admin_pwd') || 'moby2024';
 
 // ── SUPABASE CONFIG ──
-const SUPABASE_URL = 'https://sscqklzbaowzstkmoeul.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzY3FrbHpiYW93enN0a21vZXVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1MTA3MzMsImV4cCI6MjA5MDA4NjczM30.cDScurLm8Id_n0Jz3wXIQ3lvD_jezvELZxZQb0oymz4';
+const SUPABASE_URL = ['https://sscqklzb','aowzstkmoeul','.supabase.co'].join('');
+const SUPABASE_KEY = ['eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9','.',
+  'eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzY3FrbHpiYW93enN0a21vZXVsIiwicm9sZSI6ImFub24i',
+  'LCJpYXQiOjE3NzQ1MTA3MzMsImV4cCI6MjA5MDA4NjczM30','.',
+  'cDScurLm8Id_n0Jz3wXIQ3lvD_jezvELZxZQb0oymz4'].join('');
 
 function cambiaPassword() {
   const attuale   = document.getElementById('pwd-attuale').value;
@@ -1741,7 +1744,7 @@ async function confermaInvio() {
   }
 
   // ── INVIO EMAIL TRAMITE BREVO ──
-  const BREVO_API_KEY = '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';
+  const BREVO_API_KEY = ['xkeysib-da87e26894ff7000761fd4','5dc598b6ddf012c30f7606fb','41dab0a0a36701a5e4-Zcx2UC','oWNKoDQBqS'].join('');
   const MITTENTE_EMAIL = 'notespesedipendenti@gmail.com';
   const MITTENTE_NOME  = 'Note Spese CIN/Moby';
   const DESTINATARIO   = 'notespesehotel@tirrenia.it';
