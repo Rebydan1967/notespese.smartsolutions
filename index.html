@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mod. R/SP – Rimborso Spese Viaggio</title>
+<title>Note Spese</title>
+<meta name="application-name" content="Note Spese">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Note Spese">
+<meta name="theme-color" content="#0f3d5c">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAD1ElEQVR42u3dwW0cMRAEwM3AESkT55+G/dVLOO2S3JnpaqC/hkl24QzIPl+XiMhb+fP1959bkDFjPlW3LRFDB0MMHggxeCDE6GEQo4dBDB8EMXoYxPBBEMMHQQwfBMNXEIxfITB8BcHwFQTjVwgMX0EwfoXA8BUE41cIjF8hMH6FwPgVAsNXEIxfITB+hcD4FQLjVwiMXyEwfoXA+BUC41cIAFAAjF8hMH6FwPgVAuNXCDySRiPwQBoLwONoLAKPotEIPIjGAvAYGovAI2g0Ag+gsQBcvkYjcPEaC8ClaywCl63RCFy0xgJwyRqNoNJBn+bU7+Ot851KDIBqBwUAgKMIAAAgFkDFQwIAwDEEEwGsejwAhgOoekAAADiCAAAAABgKYMUDAjAYQOXDpQPwQ68DCAAAIBZA9YNV+RgHYCiC7gB+gwQAAAAAAIBOf+sTAMPehmAKgBMIAAAAAADmAOhyIACMeguCaQB2IwAAAAAAAAAAANoD6HSYHQDuDAuAQQimAtj5KQAAAAAAAAAAALQG0O0gdwayAwEAQxAAAAAAAAAAwFwAOxAAAAAAAAAAAABtAXQ8xG4An44MgAEIkgCs/hQAAAAAAAAAAAAAaAJgJQIAAAAAAAAAAACARgBWIQAAAAAAAACAswCqBIAAAE9+sgwAAGUBrPgUAAAAAADoC6DrAU4DuPuPbACAoDSAp58CAPgjEAAAAAAAAAA0BfAEwfQfWAEAAAAAAAAAAOMf5g4CAAAAAAAAAAAAgBAA3399AAAY9TAAAAAAAAAAAEAMgKTvBl2NAABfjgsAAAAAAAAAgx7GPxgBAAAAAAAAgAgA0/+fYAAA+HH8AOxBAAAAAAAAAAAAlAfQCcGphwFgzvmuT+JhAADAwwAAgIdZgQCAZgC6IAAAgC3jBwAAADwMAMkAOiA4/TAA9D3fdSceBgAAPAwAqQCqI3jjYQDod77rSTzMewC6ZDSAyggAAGD7+AF4PkwAAAAAgL4AqiIAAIAj4wcAgHgAFRG8+TAA1AZw7QgAAEQD6Pot0m8CcFeDxg/A7xG4p2EAIAAgevwAABAPAILZ35tp/BAAYPwAAAAABGr8ACgAEKjxQ6DGD4ACAIEaPwRq/AAoABCo8UOgxg+BGj8EavwQqPEDoPEAINDo8UOg8eOHQOPHD4HGjx8CjR8/BBo/fgg0fvwQ6CUgGL5AYPwCgfELBMYvEBi/gGD4AoHxCwiGLxAYv4Bg+AKC4QsExi8gGL6AYPgCguELCIYvMBi9gGD4AoPRCwxGL7kgvJ5EgfA6EgHDbcsYNG7hvfwHHgrMLr1n44EAAAAASUVORK5CYII=">
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Note%20Spese%22%2C%22short_name%22%3A%22Note%20Spese%22%2C%22start_url%22%3A%22./%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f3d5c%22%2C%22theme_color%22%3A%22%230f3d5c%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAD1ElEQVR42u3dwW0cMRAEwM3AESkT55%2BG/dVLOO2S3JnpaqC/hkl24QzIPl%2BXiMhb%2BfP1959bkDFjPlW3LRFDB0MMHggxeCDE6GEQo4dBDB8EMXoYxPBBEMMHQQwfBMNXEIxfITB8BcHwFQTjVwgMX0EwfoXA8BUE41cIjF8hMH6FwPgVAsNXEIxfITB%2BhcD4FQLjVwiMXyEwfoXA%2BBUC41cIAFAAjF8hMH6FwPgVAuNXCDySRiPwQBoLwONoLAKPotEIPIjGAvAYGovAI2g0Ag%2BgsQBcvkYjcPEaC8ClaywCl63RCFy0xgJwyRqNoNJBn%2BbU7%2BOt851KDIBqBwUAgKMIAAAgFkDFQwIAwDEEEwGsejwAhgOoekAAADiCAAAAABgKYMUDAjAYQOXDpQPwQ68DCAAAIBZA9YNV%2BRgHYCiC7gB%2BgwQAAAAAAIBOf%2BsTAMPehmAKgBMIAAAAAADmAOhyIACMeguCaQB2IwAAAAAAAAAAANoD6HSYHQDuDAuAQQimAtj5KQAAAAAAAAAAALQG0O0gdwayAwEAQxAAAAAAAAAAwFwAOxAAAAAAAAAAAABtAXQ8xG4An44MgAEIkgCs/hQAAAAAAAAAAAAAaAJgJQIAAAAAAAAAAACARgBWIQAAAAAAAACAswCqBIAAAE9%2BsgwAAGUBrPgUAAAAAADoC6DrAU4DuPuPbACAoDSAp58CAPgjEAAAAAAAAAA0BfAEwfQfWAEAAAAAAAAAAOMf5g4CAAAAAAAAAAAAgBAA3399AAAY9TAAAAAAAAAAAEAMgKTvBl2NAABfjgsAAAAAAAAAgx7GPxgBAAAAAAAAgAgA0/%2BfYAAA%2BHH8AOxBAAAAAAAAAAAAlAfQCcGphwFgzvmuT%2BJhAADAwwAAgIdZgQCAZgC6IAAAgC3jBwAAADwMAMkAOiA4/TAA9D3fdSceBgAAPAwAqQCqI3jjYQDod77rSTzMewC6ZDSAyggAAGD7%2BAF4PkwAAAAAgL4AqiIAAIAj4wcAgHgAFRG8%2BTAA1AZw7QgAAEQD6Pot0m8CcFeDxg/A7xG4p2EAIAAgevwAABAPAILZ35tp/BAAYPwAAAAABGr8ACgAEKjxQ6DGD4ACAIEaPwRq/AAoABCo8UOgxg%2BBGj8EavwQqPEDoPEAINDo8UOg8eOHQOPHD4HGjx8CjR8/BBo/fgg0fvwQ6CUgGL5AYPwCgfELBMYvEBi/gGD4AoHxCwiGLxAYv4Bg%2BAKC4QsExi8gGL6AYPgCguELCIYvMBi9gGD4AoPRCwxGL7kgvJ5EgfA6EgHDbcsYNG7hvfwHHgrMLr1n44EAAAAASUVORK5CYII%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image/png%22%7D%2C%7B%22src%22%3A%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAD1ElEQVR42u3dwW0cMRAEwM3AESkT55%2BG/dVLOO2S3JnpaqC/hkl24QzIPl%2BXiMhb%2BfP1959bkDFjPlW3LRFDB0MMHggxeCDE6GEQo4dBDB8EMXoYxPBBEMMHQQwfBMNXEIxfITB8BcHwFQTjVwgMX0EwfoXA8BUE41cIjF8hMH6FwPgVAsNXEIxfITB%2BhcD4FQLjVwiMXyEwfoXA%2BBUC41cIAFAAjF8hMH6FwPgVAuNXCDySRiPwQBoLwONoLAKPotEIPIjGAvAYGovAI2g0Ag%2BgsQBcvkYjcPEaC8ClaywCl63RCFy0xgJwyRqNoNJBn%2BbU7%2BOt851KDIBqBwUAgKMIAAAgFkDFQwIAwDEEEwGsejwAhgOoekAAADiCAAAAABgKYMUDAjAYQOXDpQPwQ68DCAAAIBZA9YNV%2BRgHYCiC7gB%2BgwQAAAAAAIBOf%2BsTAMPehmAKgBMIAAAAAADmAOhyIACMeguCaQB2IwAAAAAAAAAAANoD6HSYHQDuDAuAQQimAtj5KQAAAAAAAAAAALQG0O0gdwayAwEAQxAAAAAAAAAAwFwAOxAAAAAAAAAAAABtAXQ8xG4An44MgAEIkgCs/hQAAAAAAAAAAAAAaAJgJQIAAAAAAAAAAACARgBWIQAAAAAAAACAswCqBIAAAE9%2BsgwAAGUBrPgUAAAAAADoC6DrAU4DuPuPbACAoDSAp58CAPgjEAAAAAAAAAA0BfAEwfQfWAEAAAAAAAAAAOMf5g4CAAAAAAAAAAAAgBAA3399AAAY9TAAAAAAAAAAAEAMgKTvBl2NAABfjgsAAAAAAAAAgx7GPxgBAAAAAAAAgAgA0/%2BfYAAA%2BHH8AOxBAAAAAAAAAAAAlAfQCcGphwFgzvmuT%2BJhAADAwwAAgIdZgQCAZgC6IAAAgC3jBwAAADwMAMkAOiA4/TAA9D3fdSceBgAAPAwAqQCqI3jjYQDod77rSTzMewC6ZDSAyggAAGD7%2BAF4PkwAAAAAgL4AqiIAAIAj4wcAgHgAFRG8%2BTAA1AZw7QgAAEQD6Pot0m8CcFeDxg/A7xG4p2EAIAAgevwAABAPAILZ35tp/BAAYPwAAAAABGr8ACgAEKjxQ6DGD4ACAIEaPwRq/AAoABCo8UOgxg%2BBGj8EavwQqPEDoPEAINDo8UOg8eOHQOPHD4HGjx8CjR8/BBo/fgg0fvwQ6CUgGL5AYPwCgfELBMYvEBi/gGD4AoHxCwiGLxAYv4Bg%2BAKC4QsExi8gGL6AYPgCguELCIYvMBi9gGD4AoPRCwxGL7kgvJ5EgfA6EgHDbcsYNG7hvfwHHgrMLr1n44EAAAAASUVORK5CYII%3D%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image/png%22%7D%5D%7D">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <style>
@@ -233,6 +240,25 @@
   .login-overlay { position: fixed; inset: 0; background: rgba(15,61,92,0.85); display: flex; align-items: center; justify-content: center; z-index: 500; }
   .login-box { background: white; border-radius: 14px; padding: 2.5rem; max-width: 380px; width: 90%; box-shadow: 0 8px 40px rgba(0,0,0,0.25); text-align: center; }
   .login-title { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; color: var(--blue-dark); margin-bottom: 0.5rem; }
+
+  /* ── SCHERMATA LOGIN DIPENDENTE ── */
+  #app-login-screen { position: fixed; inset: 0; background: linear-gradient(135deg, #0f3d5c 0%, #1a5f8a 50%, #0f3d5c 100%); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+  #app-login-screen.hidden { display: none; }
+  .app-login-box { background: white; border-radius: 20px; padding: 2.5rem 2rem; max-width: 360px; width: 92%; box-shadow: 0 20px 60px rgba(0,0,0,0.4); text-align: center; }
+  .app-login-logo { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: var(--blue-dark); margin-bottom: 0.25rem; }
+  .app-login-logo span { color: var(--blue-mid); }
+  .app-login-sub { font-size: 0.82rem; color: var(--grey); margin-bottom: 2rem; }
+  .app-login-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .app-login-field { margin-bottom: 1rem; text-align: left; }
+  .app-login-field label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--grey); display: block; margin-bottom: 4px; }
+  .app-login-field input { width: 100%; font-family: 'Source Sans 3', sans-serif; font-size: 1rem; border: 1.5px solid var(--grey-border); border-radius: 8px; padding: 11px 14px; background: var(--grey-light); color: var(--text); outline: none; text-align: center; letter-spacing: 0.08em; transition: border-color 0.18s; }
+  .app-login-field input:focus { border-color: var(--blue-mid); background: white; }
+  .app-login-btn { width: 100%; padding: 13px; background: var(--blue-dark); color: white; border: none; border-radius: 8px; font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: background 0.18s; }
+  .app-login-btn:hover { background: var(--blue); }
+  .app-login-error { font-size: 0.82rem; color: var(--danger); margin-top: 0.75rem; display: none; background: #fee2e2; padding: 8px 12px; border-radius: 6px; }
+  .app-login-remember { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 1rem; font-size: 0.82rem; color: var(--grey); cursor: pointer; }
+  .app-login-remember input { width: auto; cursor: pointer; accent-color: var(--blue); }
+  .app-login-footer { margin-top: 1.5rem; font-size: 0.72rem; color: var(--grey); }
   .login-sub { font-size: 0.85rem; color: var(--grey); margin-bottom: 1.5rem; }
   .login-box input { margin-bottom: 1rem; text-align: center; letter-spacing: 0.1em; }
   .login-error { font-size: 0.82rem; color: var(--danger); margin-top: 0.5rem; display: none; }
@@ -253,12 +279,40 @@
 </head>
 <body>
 
+<!-- ══════ SCHERMATA LOGIN DIPENDENTE ══════ -->
+<div id="app-login-screen">
+  <div class="app-login-box">
+    <div class="app-login-icon">🚢</div>
+    <div class="app-login-logo">CIN / <span>MOBY</span></div>
+    <div class="app-login-sub">Accesso riservato ai dipendenti</div>
+    <div class="app-login-field">
+      <label>Matricola Aziendale</label>
+      <input type="text" id="login-matricola" placeholder="Es. 123456" maxlength="20"
+             onkeydown="if(event.key==='Enter')document.getElementById('login-nascita').focus()">
+    </div>
+    <div class="app-login-field">
+      <label>Data di Nascita (GGMMAAAA)</label>
+      <input type="text" id="login-nascita" placeholder="Es. 04041967" maxlength="8" inputmode="numeric"
+             onkeydown="if(event.key==='Enter')doAppLogin()">
+    </div>
+    <label class="app-login-remember">
+      <input type="checkbox" id="login-remember"> Ricordami su questo dispositivo
+    </label>
+    <button class="app-login-btn" onclick="doAppLogin()">🔓 Accedi</button>
+    <div class="app-login-error" id="app-login-error">Credenziali non valide. Riprova.</div>
+    <div class="app-login-footer">Smart Solutions RT · Note Spese v39</div>
+  </div>
+</div>
+
 <header>
   <div>
     <div class="header-logo">CIN / <span>MOBY</span></div>
     <div class="header-sub">Mod. R/SP · Rimborso Spese Viaggio</div>
   </div>
-  <button class="header-admin-btn" onclick="openAdmin()">⚙️ Amministrazione</button>
+  <div style="display:flex;gap:0.5rem;align-items:center">
+    <button class="header-admin-btn" onclick="openAdmin()">⚙️ Amministrazione</button>
+    <button class="header-admin-btn" onclick="esciApp()" style="background:rgba(220,38,38,0.15);border-color:rgba(220,38,38,0.35);color:rgba(255,180,180,0.9)" title="Torna alla schermata di login">🔒 Esci</button>
+  </div>
 </header>
 
 <!-- ══════ PAGINA DIPENDENTE ══════ -->
@@ -441,6 +495,7 @@
         <button class="admin-tab" onclick="switchAdminTab('porti',this)">⚓ Porti/Città</button>
         <button class="admin-tab" onclick="switchAdminTab('categorie',this)">📋 Categorie</button>
         <button class="admin-tab" onclick="switchAdminTab('subcategorie',this)">📝 Subcategorie</button>
+        <button class="admin-tab" onclick="switchAdminTab('dipendenti',this)">👤 Dipendenti</button>
         <button class="admin-tab" onclick="switchAdminTab('password',this)">🔐 Password</button>
       </div>
       <div id="admin-navi" class="admin-section active">
@@ -486,6 +541,30 @@
           </div>
         </div>
       </div>
+      <div id="admin-dipendenti" class="admin-section">
+        <div class="admin-card">
+          <div class="admin-card-title">👤 Gestione Data di Nascita Dipendenti</div>
+          <p style="font-size:0.85rem;color:var(--grey);margin-bottom:1rem">Cerca un dipendente per matricola e aggiorna la sua data di nascita (necessaria per il login).</p>
+          <div class="add-item-form" style="margin-bottom:1rem">
+            <div class="field" style="flex:1"><label>Matricola</label><input type="text" id="admin-dip-matricola" placeholder="Es. 123456" style="text-transform:uppercase" onkeydown="if(event.key==='Enter')cercaDipendente()"></div>
+            <button class="btn btn-secondary btn-sm" onclick="cercaDipendente()" style="align-self:flex-end">🔍 Cerca</button>
+          </div>
+          <div id="admin-dip-result" style="display:none">
+            <div class="admin-card" style="background:var(--blue-light);border-color:#b8d9ed;margin-bottom:0">
+              <div id="admin-dip-info" style="font-size:0.9rem;margin-bottom:1rem;color:var(--blue-dark)"></div>
+              <div class="form-grid g2">
+                <div class="field">
+                  <label>Data di Nascita</label>
+                  <input type="date" id="admin-dip-nascita">
+                </div>
+              </div>
+              <button class="btn btn-success btn-sm" style="margin-top:0.75rem" onclick="salvaNascita()">💾 Salva Data di Nascita</button>
+              <div id="admin-dip-msg" style="display:none;margin-top:0.75rem;padding:8px 12px;border-radius:6px;font-size:0.85rem"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="admin-password" class="admin-section">
         <div class="admin-card">
           <div class="admin-card-title">🔐 Cambio Password Amministrazione</div>
@@ -545,7 +624,6 @@
 <div id="toast"></div>
 
 <script>
-let ADMIN_PASSWORD = localStorage.getItem('rsp_admin_pwd') || 'moby2024';
 
 // ── SUPABASE CONFIG ──
 const SUPABASE_URL = ['https://sscqklzb','aowzstkmoeul','.supabase.co'].join('');
@@ -553,6 +631,115 @@ const SUPABASE_KEY = ['eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9','.',
   'eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzY3FrbHpiYW93enN0a21vZXVsIiwicm9sZSI6ImFub24i',
   'LCJpYXQiOjE3NzQ1MTA3MzMsImV4cCI6MjA5MDA4NjczM30','.',
   'cDScurLm8Id_n0Jz3wXIQ3lvD_jezvELZxZQb0oymz4'].join('');
+
+let ADMIN_PASSWORD = localStorage.getItem('rsp_admin_pwd') || 'moby2024';
+
+// ── LOGIN DIPENDENTE ──
+async function doAppLogin() {
+  const matricola = document.getElementById('login-matricola').value.trim().toUpperCase();
+  const nascitaRaw = document.getElementById('login-nascita').value.trim();
+  const errEl = document.getElementById('app-login-error');
+  errEl.style.display = 'none';
+
+  if (!matricola || nascitaRaw.length !== 8) {
+    errEl.textContent = 'Inserisci matricola e data di nascita (8 cifre).';
+    errEl.style.display = 'block'; return;
+  }
+
+  const dd = nascitaRaw.substring(0,2);
+  const mm = nascitaRaw.substring(2,4);
+  const yyyy = nascitaRaw.substring(4,8);
+  const dataNascitaDB = `${yyyy}-${mm}-${dd}`;
+
+  try {
+    const url = `${SUPABASE_URL}/rest/v1/dipendenti?matricola=ilike.${encodeURIComponent(matricola)}&data_nascita=eq.${dataNascitaDB}&select=matricola&limit=1`;
+    const res = await fetch(url, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const data = await res.json();
+
+    if (!data || data.length === 0) {
+      errEl.textContent = 'Credenziali non valide. Controlla matricola e data di nascita.';
+      errEl.style.display = 'block';
+      document.getElementById('login-nascita').value = '';
+    } else {
+      if (document.getElementById('login-remember').checked) {
+        localStorage.setItem('rsp_login_mat', matricola);
+        localStorage.setItem('rsp_login_nascita', nascitaRaw);
+      }
+      document.getElementById('app-login-screen').classList.add('hidden');
+      document.getElementById('matricola').value = matricola;
+      checkMatricola();
+    }
+  } catch(e) {
+    errEl.textContent = 'Errore di connessione. Riprova tra qualche secondo.';
+    errEl.style.display = 'block';
+  }
+}
+
+async function checkSavedLogin() {
+  const mat = localStorage.getItem('rsp_login_mat');
+  const nasc = localStorage.getItem('rsp_login_nascita');
+  if (!mat || !nasc) return;
+  const dd = nasc.substring(0,2), mm = nasc.substring(2,4), yyyy = nasc.substring(4,8);
+  const dataNascitaDB = `${yyyy}-${mm}-${dd}`;
+  try {
+    const url = `${SUPABASE_URL}/rest/v1/dipendenti?matricola=ilike.${encodeURIComponent(mat)}&data_nascita=eq.${dataNascitaDB}&select=matricola&limit=1`;
+    const res = await fetch(url, { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
+    const data = await res.json();
+    if (data && data.length > 0) {
+      document.getElementById('app-login-screen').classList.add('hidden');
+      document.getElementById('matricola').value = mat;
+      checkMatricola();
+    } else {
+      localStorage.removeItem('rsp_login_mat');
+      localStorage.removeItem('rsp_login_nascita');
+    }
+  } catch(e) { /* mostra login normale */ }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const mat = localStorage.getItem('rsp_login_mat');
+  const nasc = localStorage.getItem('rsp_login_nascita');
+  if (mat) document.getElementById('login-matricola').value = mat;
+  if (nasc) document.getElementById('login-nascita').value = nasc;
+  if (mat && nasc) {
+    document.getElementById('login-remember').checked = true;
+    checkSavedLogin();
+  }
+});
+
+function esciApp() {
+  if (!confirm('Vuoi uscire e tornare alla schermata di login?')) return;
+  // Rimuovi login salvato se presente
+  localStorage.removeItem('rsp_login_mat');
+  localStorage.removeItem('rsp_login_nascita');
+  // Reset form
+  resetForm();
+  // Mostra schermata login
+  document.getElementById('app-login-screen').classList.remove('hidden');
+  document.getElementById('login-matricola').value = '';
+  document.getElementById('login-nascita').value = '';
+  document.getElementById('login-remember').checked = false;
+  document.getElementById('app-login-error').style.display = 'none';
+  // Torna alla pagina dipendente se eravamo in admin
+  document.getElementById('page-admin').classList.remove('active');
+  document.getElementById('page-dipendente').classList.add('active');
+}
+
+
+// PWA Service Worker inline
+if ('serviceWorker' in navigator) {
+  const swCode = `
+    const CACHE='note-spese-v39';
+    self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','./?pwa=1']))));
+    self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>caches.match(e.request))));
+  `;
+  const blob = new Blob([swCode], {type:'application/javascript'});
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(()=>{});
+}
+
 
 function cambiaPassword() {
   const attuale   = document.getElementById('pwd-attuale').value;
@@ -582,7 +769,45 @@ function cambiaPassword() {
   showToast('Password aggiornata ✅', 'success');
 }
 
-// Categorie che richiedono il campo TRATTA
+// ══ ADMIN DIPENDENTI ══
+let adminDipId = null;
+async function cercaDipendente() {
+  const mat = document.getElementById('admin-dip-matricola').value.trim().toUpperCase();
+  if (!mat) return;
+  const result = document.getElementById('admin-dip-result');
+  const info = document.getElementById('admin-dip-info');
+  const msg = document.getElementById('admin-dip-msg');
+  msg.style.display = 'none';
+  result.style.display = 'none';
+
+  try {
+    const url = `${SUPABASE_URL}/rest/v1/dipendenti?matricola=ilike.${encodeURIComponent(mat)}&select=id,nome,cognome,qualifica,data_nascita&limit=1`;
+    const res = await fetch(url, { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
+    const data = await res.json();
+    if (!data || data.length === 0) { showToast('Dipendente non trovato','error'); return; }
+    const dip = data[0];
+    adminDipId = dip.id;
+    info.innerHTML = `<strong>${dip.nome} ${dip.cognome}</strong> — ${dip.qualifica}<br><span style="font-size:0.8rem;color:var(--grey)">Data nascita attuale: <strong>${dip.data_nascita ? dip.data_nascita.split('-').reverse().join('/') : 'Non impostata'}</strong></span>`;
+    document.getElementById('admin-dip-nascita').value = dip.data_nascita || '';
+    result.style.display = 'block';
+  } catch(e) { showToast('Errore di connessione','error'); }
+}
+
+async function salvaNascita() {
+  if (!adminDipId) return;
+  const nascita = document.getElementById('admin-dip-nascita').value;
+  const msg = document.getElementById('admin-dip-msg');
+  if (!nascita) { showToast('Inserisci la data di nascita','error'); return; }
+  try {
+    await sbUpdate('dipendenti', adminDipId, { data_nascita: nascita });
+    msg.style.display = 'block';
+    msg.style.background = '#dcfce7'; msg.style.color = '#16a34a'; msg.style.border = '1px solid #bbf7d0';
+    msg.textContent = '✅ Data di nascita salvata con successo!';
+    showToast('Data di nascita aggiornata ✅','success');
+  } catch(e) { showToast('Errore salvataggio','error'); }
+}
+
+
 const CAT_CON_TRATTA  = ['aereo','auto','nave','taxi','treno'];
 // Etichetta del campo extra per categoria
 const EXTRA_LABELS = {
@@ -1435,7 +1660,7 @@ function generaPdfHtml(d) {
 
   <div class="footer">
     <span>Documento generato il ${new Date().toLocaleDateString('it-IT')}</span>
-    <span>Mod. R/SP · CIN/Moby © ${new Date().getFullYear()}</span>
+    <span>Mod. R/SP · CIN/Moby © ${new Date().getFullYear()} · Smart Solutions RT</span>
   </div>
 
   <div class="no-print" style="margin-top:1.5rem;text-align:center">
@@ -1651,7 +1876,7 @@ async function generaPdfUnificato(d) {
   // ── FOOTER ──
   line(y+4, LGREY);
   text(`Documento generato il ${now.toLocaleDateString('it-IT')}`, ML, y-4, 7, fontR, GREY);
-  text('Mod. R/SP - CIN/Moby', A4W-MR-100, y-4, 7, fontR, GREY);
+  text('Mod. R/SP - CIN/Moby - Smart Solutions RT', A4W-MR-170, y-4, 7, fontR, GREY);
 
   // ── ALLEGA PDF RICEVUTE ──
   for (const f of uploadedFiles) {
