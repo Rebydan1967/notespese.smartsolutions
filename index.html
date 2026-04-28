@@ -300,7 +300,7 @@
     </label>
     <button class="app-login-btn" onclick="doAppLogin()">🔓 Accedi</button>
     <div class="app-login-error" id="app-login-error">Credenziali non valide. Riprova.</div>
-    <div class="app-login-footer">Smart Solutions RT · Note Spese v39</div>
+    <div class="app-login-footer">© 2025 Smart Solutions · Note Spese v40 · Tutti i diritti riservati</div>
   </div>
 </div>
 
@@ -335,8 +335,9 @@
       <div class="field"><label>Nome</label><input type="text" id="nome" readonly placeholder="—"></div>
       <div class="field"><label>Cognome</label><input type="text" id="cognome" readonly placeholder="—"></div>
     </div>
-    <div class="form-grid g2">
+    <div class="form-grid g3">
       <div class="field"><label>Qualifica / Ruolo</label><input type="text" id="qualifica" readonly placeholder="—"></div>
+      <div class="field"><label>Reparto</label><input type="text" id="reparto" readonly placeholder="—"></div>
       <div class="field"><label>Email</label><input type="email" id="email-marittimo" readonly placeholder="—"></div>
     </div>
   </div>
@@ -470,6 +471,21 @@
 </main>
 </div>
 
+<!-- ══════ FAB AIUTO ══════ -->
+<button id="fab-help" onclick="toggleFabHelp()" title="Aiuto" style="position:fixed;bottom:24px;right:24px;width:50px;height:50px;border-radius:50%;background:var(--blue);border:2px solid var(--blue-dark);color:#fff;font-size:22px;font-weight:700;cursor:pointer;z-index:999;box-shadow:0 4px 16px rgba(15,61,92,0.28);transition:background 0.18s;">?</button>
+
+<div id="fab-overlay" onclick="closeFabHelp()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1000;"></div>
+<div id="fab-modal" style="display:none;position:fixed;bottom:86px;right:24px;width:min(340px,calc(100vw - 48px));background:var(--white);border:1.5px solid var(--grey-border);border-radius:12px;padding:18px;z-index:1001;box-shadow:0 8px 32px rgba(15,61,92,0.18);">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div id="fab-badge" style="width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;"></div>
+      <span id="fab-title" style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--blue-dark);"></span>
+    </div>
+    <button onclick="closeFabHelp()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--grey);line-height:1;padding:0;">×</button>
+  </div>
+  <p id="fab-text" style="font-size:0.9rem;color:var(--text);line-height:1.65;margin:0;"></p>
+</div>
+
 <!-- ══════ PAGINA ADMIN ══════ -->
 <div id="page-admin" class="page">
   <div class="login-overlay" id="login-overlay">
@@ -497,6 +513,7 @@
         <button class="admin-tab" onclick="switchAdminTab('subcategorie',this)">📝 Subcategorie</button>
         <button class="admin-tab" onclick="switchAdminTab('dipendenti',this)">👤 Dipendenti</button>
         <button class="admin-tab" onclick="switchAdminTab('password',this)">🔐 Password</button>
+        <button class="admin-tab" onclick="switchAdminTab('blocchi',this)">🚫 Blocchi</button>
       </div>
       <div id="admin-navi" class="admin-section active">
         <div class="admin-card">
@@ -560,6 +577,55 @@
               </div>
               <button class="btn btn-success btn-sm" style="margin-top:0.75rem" onclick="salvaNascita()">💾 Salva Data di Nascita</button>
               <div id="admin-dip-msg" style="display:none;margin-top:0.75rem;padding:8px 12px;border-radius:6px;font-size:0.85rem"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-blocchi" class="admin-section">
+        <div class="admin-card">
+          <div class="admin-card-title">🚫 Blocco Accesso per Reparto</div>
+          <p style="font-size:0.85rem;color:var(--grey);margin-bottom:1.25rem">Quando un reparto è bloccato, i dipendenti di quel reparto non possono accedere all'app dopo il login.</p>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1rem;background:var(--grey-light);border:1px solid var(--grey-border);border-radius:8px">
+              <span style="font-weight:600;font-size:0.95rem">Camera</span>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span id="label-camera" style="font-size:0.85rem;font-weight:600">🟢 Attivo</span>
+                <label style="position:relative;display:inline-block;width:48px;height:26px;cursor:pointer">
+                  <input type="checkbox" id="toggle-camera" onchange="toggleBlocco('camera')" style="opacity:0;width:0;height:0">
+                  <span style="position:absolute;cursor:pointer;inset:0;background:#d1d5db;border-radius:26px;transition:0.3s"></span>
+                </label>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1rem;background:var(--grey-light);border:1px solid var(--grey-border);border-radius:8px">
+              <span style="font-weight:600;font-size:0.95rem">Cucina</span>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span id="label-cucina" style="font-size:0.85rem;font-weight:600">🟢 Attivo</span>
+                <label style="position:relative;display:inline-block;width:48px;height:26px;cursor:pointer">
+                  <input type="checkbox" id="toggle-cucina" onchange="toggleBlocco('cucina')" style="opacity:0;width:0;height:0">
+                  <span style="position:absolute;cursor:pointer;inset:0;background:#d1d5db;border-radius:26px;transition:0.3s"></span>
+                </label>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1rem;background:var(--grey-light);border:1px solid var(--grey-border);border-radius:8px">
+              <span style="font-weight:600;font-size:0.95rem">Coperta</span>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span id="label-coperta" style="font-size:0.85rem;font-weight:600">🟢 Attivo</span>
+                <label style="position:relative;display:inline-block;width:48px;height:26px;cursor:pointer">
+                  <input type="checkbox" id="toggle-coperta" onchange="toggleBlocco('coperta')" style="opacity:0;width:0;height:0">
+                  <span style="position:absolute;cursor:pointer;inset:0;background:#d1d5db;border-radius:26px;transition:0.3s"></span>
+                </label>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1rem;background:var(--grey-light);border:1px solid var(--grey-border);border-radius:8px">
+              <span style="font-weight:600;font-size:0.95rem">Macchina</span>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span id="label-macchina" style="font-size:0.85rem;font-weight:600">🟢 Attivo</span>
+                <label style="position:relative;display:inline-block;width:48px;height:26px;cursor:pointer">
+                  <input type="checkbox" id="toggle-macchina" onchange="toggleBlocco('macchina')" style="opacity:0;width:0;height:0">
+                  <span style="position:absolute;cursor:pointer;inset:0;background:#d1d5db;border-radius:26px;transition:0.3s"></span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -652,17 +718,33 @@ async function doAppLogin() {
   const dataNascitaDB = `${yyyy}-${mm}-${dd}`;
 
   try {
-    const url = `${SUPABASE_URL}/rest/v1/dipendenti?matricola=ilike.${encodeURIComponent(matricola)}&data_nascita=eq.${dataNascitaDB}&select=matricola&limit=1`;
+  const url = `${SUPABASE_URL}/rest/v1/dipendenti?matricola=ilike.${encodeURIComponent(matricola)}&data_nascita=eq.${dataNascitaDB}&select=matricola,reparto&limit=1`;
     const res = await fetch(url, {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
     });
     const data = await res.json();
 
-    if (!data || data.length === 0) {
+if (!data || data.length === 0) {
       errEl.textContent = 'Credenziali non valide. Controlla matricola e data di nascita.';
       errEl.style.display = 'block';
       document.getElementById('login-nascita').value = '';
     } else {
+      // Controllo blocco reparto prima di entrare
+      const reparto = data[0].reparto || '';
+      const repKey = `blocco_${reparto.toLowerCase()}`;
+      try {
+        const cfgRes = await fetch(`${SUPABASE_URL}/rest/v1/config?chiave=eq.${repKey}&select=valore&limit=1`, {
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+        });
+        const cfgData = await cfgRes.json();
+        if (cfgData && cfgData.length > 0 && cfgData[0].valore === 'true') {
+          errEl.textContent = '⚠️ Servizio temporaneamente non disponibile per il tuo reparto. Contatta l\'ufficio competente.';
+          errEl.style.display = 'block';
+          document.getElementById('login-nascita').value = '';
+          return;
+        }
+      } catch(e) { /* in caso di errore lascia passare */ }
+
       if (document.getElementById('login-remember').checked) {
         localStorage.setItem('rsp_login_mat', matricola);
         localStorage.setItem('rsp_login_nascita', nascitaRaw);
@@ -855,6 +937,7 @@ async function sbDelete(table, id) {
 let DB = { navi:[], porti:[], categorie:[], subcategorie:{} };
 let uploadedFiles = [];
 let dipendenteTrovato = false;
+let currentReparto = '';
 let realEmail = ''; // email reale non mascherata
 let speseId = 0, pernottiId = 0;
 
@@ -1077,14 +1160,14 @@ async function checkMatricola() {
 
   if (val.length < 3) {
     status.textContent = '';
-    ['nome','cognome','qualifica','email-marittimo'].forEach(id => document.getElementById(id).value='');
-    dipendenteTrovato = false; aggiornaBtnInvia(); return;
+    ['nome','cognome','qualifica','reparto','email-marittimo'].forEach(id => document.getElementById(id).value='');
+    dipendenteTrovato = false; currentReparto = ''; aggiornaBtnInvia(); return;
   }
 
   status.textContent = '⏳';
 
   try {
-    const url = `${SUPABASE_URL}/rest/v1/dipendenti?matricola=ilike.${encodeURIComponent(val)}&select=nome,cognome,qualifica,email&limit=1`;
+    const url = `${SUPABASE_URL}/rest/v1/dipendenti?matricola=ilike.${encodeURIComponent(val)}&select=nome,cognome,qualifica,email,reparto&limit=1`;
     const res  = await fetch(url, {
       headers: {
         'apikey': SUPABASE_KEY,
@@ -1095,19 +1178,35 @@ async function checkMatricola() {
     const data = await res.json();
 
     if (!data || data.length === 0) {
-      ['nome','cognome','qualifica','email-marittimo'].forEach(id => document.getElementById(id).value='');
+      ['nome','cognome','qualifica','reparto','email-marittimo'].forEach(id => document.getElementById(id).value='');
       status.textContent = '❌';
       dipendenteTrovato = false;
+      currentReparto = '';
       showAlert('error', 'Matricola non trovata. Contatta l\'Ufficio IPEN.');
     } else {
       const dip = data[0];
       document.getElementById('nome').value            = dip.nome      || '';
       document.getElementById('cognome').value         = dip.cognome   || '';
       document.getElementById('qualifica').value       = dip.qualifica || '';
+      document.getElementById('reparto').value         = dip.reparto   || '';
       realEmail = dip.email || '';
       document.getElementById('email-marittimo').value = maskEmail(realEmail);
       status.textContent = '✅';
       dipendenteTrovato = true;
+      currentReparto = dip.reparto || '';
+      // Controllo blocco reparto
+      const repKey = `blocco_${currentReparto.toLowerCase()}`;
+      const cfgRes = await fetch(`${SUPABASE_URL}/rest/v1/config?chiave=eq.${repKey}&select=valore&limit=1`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      });
+      const cfgData = await cfgRes.json();
+      if (cfgData && cfgData.length > 0 && cfgData[0].valore === 'true') {
+        ['nome','cognome','qualifica','reparto','email-marittimo'].forEach(id => document.getElementById(id).value='');
+        dipendenteTrovato = false; currentReparto = '';
+        status.textContent = '🔴';
+        showAlert('error', '⚠️ Servizio temporaneamente non disponibile per il tuo reparto. Contatta l\'ufficio competente.');
+        aggiornaBtnInvia(); return;
+      }
       showAlert('info', `Benvenuto/a ${dip.nome} ${dip.cognome} – ${dip.qualifica}`);
     }
   } catch(e) {
@@ -1329,8 +1428,8 @@ function onCatChange(sel, rowId) {
     extraInput.value = '';
   }
 
-  // Hotel autorizzazione
-  if (catId === 'hotel') {
+// Autorizzazione hotel / auto / aereo
+  if (catId === 'hotel' || catId === 'auto' || catId === 'aereo') {
     hotelAuth.classList.add('visible');
   } else {
     hotelAuth.classList.remove('visible');
@@ -1511,6 +1610,7 @@ function valida(d) {
   if (!d.dataEvento) { showToast('Inserisci la data','error'); return false; }
   if (!d.porto && d.tipo !== 'ALTRO') { showToast('Seleziona il Porto/Città','error'); return false; }
   if (d.spese.length===0) { showToast('Aggiungi almeno una voce di spesa','error'); return false; }
+  if (uploadedFiles.length===0) { showToast('⚠️ Devi allegare almeno una ricevuta in PDF per poter inviare','error'); return false; }
 
   for (const s of d.spese) {
     if (!s.cat) { showToast('Seleziona la categoria per tutte le voci','error'); return false; }
@@ -1971,7 +2071,9 @@ async function confermaInvio() {
   const BREVO_API_KEY = ['xkeysib-da87e26894ff7000761fd4','5dc598b6ddf012c30f7606fb','41dab0a0a36701a5e4-Zcx2UC','oWNKoDQBqS'].join('');
   const MITTENTE_EMAIL = 'notespesedipendenti@gmail.com';
   const MITTENTE_NOME  = 'Note Spese CIN/Moby';
-  const DESTINATARIO   = 'notespesehotel@tirrenia.it';
+  const DESTINATARIO = (['coperta','macchina'].includes(currentReparto.toLowerCase()))
+    ? 'notespesecopmac@tirrenia.it'
+    : 'notespesehotel@tirrenia.it';
 
   // Allegato unico PDF
   const allegati = [{
@@ -2070,6 +2172,45 @@ function doLogin() {
   document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
   document.getElementById('admin-'+tab).classList.add('active');
   btn.classList.add('active');
+  if (tab === 'blocchi') loadBlocchi();
+}
+
+// ── ADMIN BLOCCHI REPARTI ──
+async function loadBlocchi() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/config?chiave=like.blocco_*&select=chiave,valore`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const data = await res.json();
+    ['camera','cucina','coperta','macchina'].forEach(rep => {
+      const row = Array.isArray(data) ? data.find(r => r.chiave === `blocco_${rep}`) : null;
+      const bloccato = row ? row.valore === 'true' : false;
+      const tog = document.getElementById(`toggle-${rep}`);
+      const lbl = document.getElementById(`label-${rep}`);
+      if (tog) tog.checked = bloccato;
+      if (lbl) lbl.textContent = bloccato ? '🔴 Bloccato' : '🟢 Attivo';
+    });
+  } catch(e) { showToast('Errore caricamento blocchi','error'); }
+}
+
+async function toggleBlocco(rep) {
+  const tog = document.getElementById(`toggle-${rep}`);
+  const lbl = document.getElementById(`label-${rep}`);
+  const bloccato = tog.checked;
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/config?chiave=eq.blocco_${rep}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ valore: bloccato ? 'true' : 'false' })
+    });
+    lbl.textContent = bloccato ? '🔴 Bloccato' : '🟢 Attivo';
+    showToast(bloccato ? `Reparto ${rep} bloccato 🔴` : `Reparto ${rep} attivato 🟢`, bloccato ? 'error' : 'success');
+  } catch(e) { showToast('Errore aggiornamento blocco','error'); tog.checked = !bloccato; }
 }
 
 // ══ ADMIN NAVI ══
@@ -2266,6 +2407,38 @@ function showToast(msg,type='success') {
   const t=document.getElementById('toast');
   t.textContent=msg; t.className='show '+type;
   clearTimeout(window._tt); window._tt=setTimeout(()=>t.className='',4000);
+}
+
+// ── FAB AIUTO ──
+const FAB_GUIDE = {
+  1: { title: 'Identificazione', text: 'Inserisci la tua matricola e la data di nascita nel formato GGMMAAAA (es. 15031980). Usa "Ricordami" per non reinserirle la prossima volta.' },
+  2: { title: 'Tipo di richiesta', text: 'Seleziona il tipo di evento: Imbarco, Sbarco, Trasbordo, Visita Medico, Viaggio Autorizzato o Altro. Se "Viaggi Autorizzati" devi specificare il motivo e chi ha autorizzato.' },
+  3: { title: 'Tratta di viaggio', text: 'Seleziona la nave (se richiesta), il porto/città dell\'evento e la data. Puoi aggiungere più tratte usando il tasto "Aggiungi tratta".' },
+  4: { title: 'Spese documentate', text: 'Aggiungi ogni voce di spesa: seleziona categoria, sottocategoria, data e importo. Per Hotel, Auto e Aereo indica obbligatoriamente chi ha autorizzato la spesa.' },
+  5: { title: 'Allegati e invio', text: 'Carica le ricevute in formato PDF (max 10 file, tot. 4 MB). Almeno un allegato è obbligatorio. Spunta la dichiarazione e premi "Invia Nota Spese".' },
+};
+function getPasso() {
+  const badges = document.querySelectorAll('.step-badge');
+  for (let i = badges.length; i >= 1; i--) {
+    const b = document.getElementById('badge-' + i);
+    if (b && (b.classList.contains('active') || b.classList.contains('done'))) return i;
+  }
+  return 1;
+}
+function toggleFabHelp() {
+  const m = document.getElementById('fab-modal');
+  if (m.style.display === 'block') { closeFabHelp(); return; }
+  const p = getPasso();
+  const g = FAB_GUIDE[p] || FAB_GUIDE[1];
+  document.getElementById('fab-badge').textContent = p;
+  document.getElementById('fab-title').textContent = g.title;
+  document.getElementById('fab-text').textContent  = g.text;
+  document.getElementById('fab-overlay').style.display = 'block';
+  m.style.display = 'block';
+}
+function closeFabHelp() {
+  document.getElementById('fab-modal').style.display   = 'none';
+  document.getElementById('fab-overlay').style.display = 'none';
 }
 
 // INIT
